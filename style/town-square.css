@@ -103,6 +103,7 @@ body.override-mode .player-node:hover {
 /* Layout mode — draggable nodes */
 body.layout-mode .player-node {
   cursor: grab;
+  touch-action: none;
   transition: box-shadow var(--transition), border-color var(--transition);
 }
 

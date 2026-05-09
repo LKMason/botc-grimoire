@@ -173,9 +173,11 @@ export class TownSquare {
 
       node.el.addEventListener('pointermove', onPointerMove);
       node.el.addEventListener('pointerup', onPointerUp);
+      node.el.addEventListener('pointercancel', onPointerCancel);
     };
 
     const onPointerMove = (e) => {
+      e.preventDefault();
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
       if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved = true;
@@ -184,12 +186,13 @@ export class TownSquare {
       node.el.style.top = `${startTop + dy}px`;
     };
 
-    const onPointerUp = () => {
+    const endDrag = (save) => {
       node.el.classList.remove('player-node--dragging');
       node.el.removeEventListener('pointermove', onPointerMove);
       node.el.removeEventListener('pointerup', onPointerUp);
+      node.el.removeEventListener('pointercancel', onPointerCancel);
 
-      if (moved) {
+      if (save && moved) {
         const w = this.container.offsetWidth;
         const h = this.container.offsetHeight;
         const left = parseFloat(node.el.style.left) || 0;
@@ -202,11 +205,15 @@ export class TownSquare {
       }
     };
 
+    const onPointerUp = () => endDrag(true);
+    const onPointerCancel = () => endDrag(false);
+
     node.el.addEventListener('pointerdown', onPointerDown);
     node._dragCleanup = () => {
       node.el.removeEventListener('pointerdown', onPointerDown);
       node.el.removeEventListener('pointermove', onPointerMove);
       node.el.removeEventListener('pointerup', onPointerUp);
+      node.el.removeEventListener('pointercancel', onPointerCancel);
     };
   }
 
