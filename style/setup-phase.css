@@ -1,0 +1,338 @@
+/* ── Setup Panel ─────────────────────────────────────────────────── */
+.setup-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.setup-progress {
+  display: flex;
+  gap: 4px;
+  padding: var(--gap-md) var(--gap-lg);
+  border-bottom: 1px solid var(--bg-raised);
+  flex-shrink: 0;
+}
+
+.setup-progress-step {
+  flex: 1;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--bg-raised);
+  transition: background var(--transition);
+}
+
+.setup-progress-step.active  { background: var(--color-good); }
+.setup-progress-step.done    { background: rgba(74,158,255,0.4); }
+
+.setup-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--gap-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  min-height: 0;
+}
+
+.setup-body.step-assignments {
+  overflow: hidden;
+}
+
+.setup-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-white);
+}
+
+.setup-subtitle {
+  font-size: 13px;
+  color: var(--color-neutral);
+  line-height: 1.5;
+}
+
+/* Player count selector */
+.player-count-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: var(--gap-md);
+}
+
+.player-count-selector label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-neutral);
+}
+
+.player-count-input {
+  width: 80px;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  background: var(--bg-raised);
+  border: 2px solid var(--bg-raised);
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+}
+
+/* Player name list */
+.player-name-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.player-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.seat-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.player-name-input {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--bg-raised);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  color: var(--color-white);
+  transition: var(--transition);
+  min-height: 44px;
+}
+
+.player-name-input:focus {
+  border-color: var(--color-good);
+  outline: none;
+}
+
+/* Composition summary */
+.composition-summary {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: var(--gap-md);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-sm);
+}
+
+.comp-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  font-size: 13px;
+}
+
+.comp-count {
+  font-size: 20px;
+  font-weight: 800;
+  min-width: 28px;
+  text-align: center;
+}
+
+.comp-label {
+  font-weight: 600;
+  color: var(--color-neutral);
+}
+
+.comp-townsfolk { color: var(--color-good); }
+.comp-outsider  { color: var(--color-outsider); }
+.comp-minion    { color: var(--color-minion); }
+.comp-demon     { color: var(--color-demon); }
+
+/* Role grid */
+.role-assignment-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-md);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.role-pool-panel, .player-assignment-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  min-height: 0;
+}
+
+.role-pool-label, .assignment-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.role-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.role-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-white);
+  transition: var(--transition);
+  user-select: none;
+  min-height: 40px;
+}
+
+.role-chip:hover { border-color: var(--color-neutral); }
+.role-chip.selected { border-color: var(--color-warning); background: rgba(255,209,102,0.07); }
+.role-chip.assigned { opacity: 0.4; cursor: not-allowed; }
+
+.role-chip-type-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-townsfolk { background: var(--color-good); }
+.dot-outsider  { background: var(--color-outsider); }
+.dot-minion    { background: var(--color-minion); }
+.dot-demon     { background: var(--color-demon); }
+
+/* Player assignment list */
+.assignment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.assignment-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  min-height: 44px;
+  transition: var(--transition);
+}
+
+.assignment-row:hover { border-color: var(--color-neutral); }
+.assignment-row.assignable { border-color: var(--color-warning); cursor: crosshair; }
+.assignment-row.has-role { border-color: var(--bg-raised); }
+
+.assignment-player-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+  flex: 1;
+}
+
+.assignment-role-display {
+  font-size: 12px;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+.assignment-role-display.assigned {
+  color: var(--color-neutral);
+  font-weight: 600;
+}
+
+/* Setup footer */
+.setup-footer {
+  padding: var(--gap-md) var(--gap-lg);
+  border-top: 1px solid var(--bg-raised);
+  display: flex;
+  gap: var(--gap-sm);
+  flex-shrink: 0;
+}
+
+/* Drunk fake role step */
+.drunk-fake-role-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+/* Red herring instruction */
+.red-herring-instruction {
+  background: rgba(74,158,255,0.07);
+  border: 1px solid rgba(74,158,255,0.2);
+  border-radius: var(--radius-md);
+  padding: var(--gap-md);
+  font-size: 13px;
+  color: var(--color-neutral);
+  line-height: 1.6;
+}
+
+/* Review step */
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.review-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  font-size: 13px;
+}
+
+.review-seat {
+  width: 24px;
+  color: var(--color-muted);
+  font-weight: 700;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.review-name { font-weight: 700; flex: 1; }
+.review-emoji { font-size: 16px; }
+.review-role { color: var(--color-neutral); font-weight: 600; }
+
+.traveller-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--gap-md);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(200,168,75,0.35);
+  margin-top: var(--gap-sm);
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1c2e">
+  <title>BotC Grimoire</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+
+  <link rel="stylesheet" href="style/base.css">
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="stylesheet" href="style/town-square.css">
+  <link rel="stylesheet" href="style/night-deck.css">
+  <link rel="stylesheet" href="style/day-phase.css">
+  <link rel="stylesheet" href="style/setup-phase.css">
+  <link rel="stylesheet" href="style/modals.css">
+  <link rel="stylesheet" href="style/animations.css">
+</head>
+<body class="phase--setup">
+
+  <div id="app">
+    <div id="panel-left" class="panel panel--left">
+      <div id="town-square"></div>
+    </div>
+    <div id="panel-right" class="panel panel--right">
+      <!-- Populated by AppShell.js -->
+    </div>
+  </div>
+
+  <!-- Fixed overlays -->
+  <div id="day-badge" class="day-badge">Setup</div>
+  <span id="phase-label" class="phase-label">SETUP</span>
+  <div id="top-controls" class="top-controls">
+    <button id="override-toggle" class="override-toggle" title="Edit State (Override Mode)">
+      ⚙️ Edit State
+    </button>
+    <button id="undo-btn" class="undo-btn" title="Undo last action" disabled>
+      ↩ Undo
+    </button>
+    <button id="layout-btn" class="layout-btn" title="Modify Layout — drag players to rearrange">
+      ⠿ Modify Layout
+    </button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

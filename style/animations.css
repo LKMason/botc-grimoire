@@ -1,0 +1,98 @@
+/* ── Card transition ──────────────────────────────────────────────── */
+@keyframes card-enter {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes card-enter-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.night-card { animation: card-enter 200ms ease; }
+.night-card.entering-left { animation: card-enter-left 200ms ease; }
+
+/* ── Win overlay animation ────────────────────────────────────────── */
+@keyframes win-enter {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.win-dialog[open] { animation: win-enter 350ms cubic-bezier(0.2, 0.8, 0.3, 1); }
+
+/* ── Override panel slide ─────────────────────────────────────────── */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+.override-panel { animation: slide-in-right 200ms ease; }
+
+/* ── Phase transition flash ───────────────────────────────────────── */
+@keyframes phase-flash {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.panel--right.phase-transition {
+  animation: phase-flash 250ms ease;
+}
+
+/* ── Node pop ─────────────────────────────────────────────────────── */
+@keyframes node-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.player-node.pop { animation: node-pop 280ms ease; }
+
+/* ── History popover fade ─────────────────────────────────────────── */
+@keyframes popover-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.history-dialog[open] { animation: popover-in 150ms ease; }
+
+/* ── Grimoire overlay ─────────────────────────────────────────────── */
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.grimoire-overlay { animation: overlay-in 180ms ease; }
+
+/* ── Toast / notification ─────────────────────────────────────────── */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toast-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-raised);
+  border: 1px solid var(--bg-raised);
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-white);
+  z-index: 400;
+  pointer-events: none;
+  animation: toast-in 200ms ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+.toast.toast-success { border-color: var(--color-safe); color: var(--color-safe); }
+.toast.toast-warning { border-color: var(--color-warning); color: var(--color-warning); }
+.toast.toast-error   { border-color: var(--color-evil); color: var(--color-evil); }

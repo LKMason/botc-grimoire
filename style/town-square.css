@@ -1,0 +1,206 @@
+#town-square {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Player Node ─────────────────────────────────────────────────── */
+.player-node {
+  position: absolute;
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  border: 3px solid var(--bg-raised);
+  background: var(--bg-surface);
+  gap: 2px;
+  overflow: visible;
+}
+
+.player-node:active {
+  transform: scale(0.94) !important;
+}
+
+/* alignment ring */
+.player-node--good  { border-color: var(--color-good); box-shadow: var(--glow-good); }
+.player-node--evil  { border-color: var(--color-evil); box-shadow: var(--glow-evil); }
+
+/* Status overlays */
+.player-node--dead {
+  opacity: 0.55;
+  border-color: var(--color-muted) !important;
+  box-shadow: none !important;
+  filter: grayscale(0.4);
+}
+
+.player-node--poisoned {
+  box-shadow: var(--glow-poison) !important;
+  border-color: var(--color-poison) !important;
+}
+
+.player-node--safe {
+  box-shadow: var(--glow-safe) !important;
+  border-color: var(--color-safe) !important;
+}
+
+/* Traveller — dashed gold border to distinguish from regular players */
+.player-node--traveller {
+  border-style: dashed !important;
+  border-color: #c8a84b !important;
+}
+.player-node--traveller.player-node--good { box-shadow: 0 0 8px rgba(200,168,75,0.4); }
+.player-node--traveller.player-node--evil { box-shadow: 0 0 8px rgba(200,168,75,0.4); }
+
+.player-node--on-block {
+  animation: pulse-block 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse-block {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 209, 102, 0.4); }
+  50%       { box-shadow: 0 0 20px rgba(255, 209, 102, 0.9); }
+}
+
+/* Targeting mode */
+.player-node--targetable {
+  border-color: var(--color-warning) !important;
+  box-shadow: var(--glow-warning) !important;
+  cursor: crosshair;
+  animation: pulse-target 1s ease-in-out infinite;
+}
+
+@keyframes pulse-target {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.player-node--selected-target {
+  border-color: var(--color-warning) !important;
+  background: rgba(255, 209, 102, 0.15) !important;
+  box-shadow: var(--glow-warning) !important;
+  animation: none !important;
+}
+
+.player-node--not-targetable {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Override mode highlight */
+body.override-mode .player-node {
+  cursor: crosshair;
+}
+body.override-mode .player-node:hover {
+  border-color: var(--color-warning);
+  box-shadow: var(--glow-warning);
+}
+
+/* Layout mode — draggable nodes */
+body.layout-mode .player-node {
+  cursor: grab;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+body.layout-mode .player-node:active {
+  transform: none !important;
+}
+
+.player-node--dragging {
+  cursor: grabbing !important;
+  transform: scale(1.08) !important;
+  z-index: 10 !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5) !important;
+  opacity: 0.92;
+  transition: none !important;
+}
+
+/* ── Node inner content ──────────────────────────────────────────── */
+.node-emoji {
+  font-size: 22px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.node-name {
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-white);
+  line-height: 1.2;
+  max-width: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.node-role {
+  font-size: 8px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-muted);
+  max-width: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Status indicator row ────────────────────────────────────────── */
+.node-status {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.node-status-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* ── Nomination selection mode ───────────────────────────────────── */
+.player-node--nominator {
+  border-color: var(--color-warning) !important;
+  background: rgba(255, 209, 102, 0.12) !important;
+  box-shadow: var(--glow-warning) !important;
+}
+
+.player-node--nominee {
+  border-color: var(--color-evil) !important;
+  background: rgba(224, 82, 82, 0.12) !important;
+  box-shadow: var(--glow-evil) !important;
+}
+
+.player-node--not-nominatable {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Town square empty state ─────────────────────────────────────── */
+.town-square-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-md);
+  color: var(--color-muted);
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.town-square-empty .empty-icon {
+  font-size: 48px;
+  opacity: 0.4;
+}

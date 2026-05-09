@@ -1,0 +1,99 @@
+:root {
+  /* Backgrounds */
+  --bg-primary:   #1a1c2e;
+  --bg-secondary: #22253a;
+  --bg-surface:   #2e3150;
+  --bg-raised:    #373c5e;
+  --bg-overlay:   rgba(10, 10, 20, 0.92);
+
+  /* Semantic colors */
+  --color-good:    #4a9eff;
+  --color-evil:    #e05252;
+  --color-minion:  #c46adb;
+  --color-outsider:#72b8e0;
+  --color-demon:   #ff4040;
+  --color-poison:  #9b5de5;
+  --color-safe:    #38d9a9;
+  --color-warning: #ffd166;
+  --color-neutral: #b0b8d4;
+  --color-muted:   #6b7399;
+  --color-white:   #e8eaf6;
+
+  /* Accent glows */
+  --glow-good:    0 0 10px rgba(74, 158, 255, 0.4);
+  --glow-evil:    0 0 10px rgba(224, 82, 82, 0.4);
+  --glow-poison:  0 0 10px rgba(155, 93, 229, 0.4);
+  --glow-safe:    0 0 10px rgba(56, 217, 169, 0.4);
+  --glow-warning: 0 0 12px rgba(255, 209, 102, 0.5);
+
+  /* Typography */
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Mono', monospace;
+
+  /* Sizing */
+  --node-size:   100px;
+  --node-radius: 50px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+
+  /* Transitions */
+  --transition: 160ms ease;
+  --transition-slow: 320ms ease;
+
+  /* Spacing */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 40px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--color-white);
+  font-family: var(--font);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: var(--bg-raised);
+  border: 1px solid var(--bg-raised);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--color-good);
+  outline-offset: 1px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-raised); border-radius: 2px; }
