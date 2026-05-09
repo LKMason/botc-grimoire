@@ -135,6 +135,28 @@ body.layout-mode .layout-btn {
   color: var(--color-white);
 }
 
+/* View State button */
+.view-state-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: var(--bg-surface);
+  color: var(--color-neutral);
+  border: 2px solid var(--bg-raised);
+  transition: var(--transition);
+}
+
+.view-state-btn:hover {
+  border-color: var(--color-neutral);
+  color: var(--color-white);
+}
+
+.view-state-btn:active {
+  transform: scale(0.97);
+}
+
 /* Day count badge */
 .day-badge {
   position: fixed;

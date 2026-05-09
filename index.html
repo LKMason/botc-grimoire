@@ -44,7 +44,18 @@
     <button id="layout-btn" class="layout-btn" title="Modify Layout — drag players to rearrange">
       ⠿ Modify Layout
     </button>
+    <button id="view-state-btn" class="view-state-btn" title="View full game state for physical grimoire handoff">
+      View State
+    </button>
   </div>
+
+  <dialog id="state-view-dialog" class="state-view-dialog">
+    <div class="state-view-header">
+      <span class="state-view-title">Game State</span>
+      <button class="state-view-close history-dialog-close" autofocus>✕</button>
+    </div>
+    <pre id="state-view-body" class="state-view-body"></pre>
+  </dialog>
 
   <script type="module" src="js/main.js"></script>
 </body>

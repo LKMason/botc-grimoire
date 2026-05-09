@@ -1,3 +1,57 @@
+/* ── State View Dialog ───────────────────────────────────────────── */
+.state-view-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(680px, 96vw);
+  max-height: 80vh;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-raised);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+  z-index: 400;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.state-view-dialog[open] {
+  display: flex;
+}
+
+.state-view-dialog::backdrop {
+  background: rgba(0,0,0,0.55);
+}
+
+.state-view-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--bg-raised);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.state-view-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: 0.3px;
+}
+
+.state-view-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--color-neutral);
+  white-space: pre;
+}
+
 /* ── History Popover ─────────────────────────────────────────────── */
 .history-dialog {
   position: fixed;
